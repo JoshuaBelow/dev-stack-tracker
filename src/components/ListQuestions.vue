@@ -14,18 +14,21 @@ async function executeSearch() {
 </script>
 
 <template>
-  <div>testing things</div>
+  <div>
+    <button @click="executeSearch" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+      Search Stack Exchange For Recent Questions
+    </button>
 
-    <button @click="executeSearch">Search Stack Exchange</button>
-    <ul v-if="searchResults.length > 0">
-      <li v-for="result in searchResults" :key="result.question_id">
-        <RouterLink :to="{ path: `/question/${result.question_id}`, query: { title: result.title } }">
+    <ul v-if="searchResults.length > 0" class="mt-4">
+      <li v-for="result in searchResults" :key="result.question_id" class="mb-2">
+        <router-link :to="{ path: `/question/${result.question_id}`, query: { title: result.title } }" class="text-blue-500 hover:underline">
           {{ result.title }}
-        </RouterLink>
+        </router-link>
       </li>
     </ul>
-    <p v-else-if="searchExecuted">No results found.</p>
-    <p v-else>Click the button to search Stack Exchange.</p>
+
+    <p v-else-if="searchExecuted" class="mt-4 text-gray-600">No results found.</p>
+  </div>
 </template>
 
 <style>
