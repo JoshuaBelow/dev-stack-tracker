@@ -1,31 +1,29 @@
 <script setup>
-import { ref } from 'vue'
-import axios from 'axios'
+  import { ref } from 'vue'
 
-// Define reactive properties
-const searchQuery = ref('');
-const searchResults = ref([]);
+  // Define reactive properties
+  const searchQuery = ref('');
+  const searchResults = ref([]);
 
-// Function to fetch data from Stack Exchange API
-const searchStackExchange = async () => {
-  try {
-    const response = await axios.get('https://api.stackexchange.com/2.3/search', {
-      params: {
-        order: 'desc',
-        sort: 'activity',
-        site: 'stackoverflow',
-        intitle: searchQuery.value  // Use the search query as the title filter
-      }
-    });
-    searchResults.value = response.data.items;
-  } catch (error) {
-    console.error('Error fetching data from Stack Exchange API:', error);
+  // Function to fetch data from Stack Exchange API
+  const searchStackExchange = async () => {
+    try {
+      const response = await axios.get('https://api.stackexchange.com/2.3/search', {
+        params: {
+          order: 'desc',
+          sort: 'activity',
+          site: 'stackoverflow',
+          intitle: searchQuery.value  
+        }
+      });
+      searchResults.value = response.data.items;
+    } catch (error) {
+      console.error('Error fetching data from Stack Exchange API:', error);
+    }
   }
-}
 </script>
 
 <template>
-  <div>
     <h1>{{ msg }}</h1>
 
     <div class="search-container">
@@ -50,7 +48,7 @@ const searchStackExchange = async () => {
       </p>
     </div>
 
-    <p>
+    <!-- <p>
       Check out
       <a href="https://vuejs.org/guide/quick-start.html#local" target="_blank">create-vue</a>, the official Vue + Vite
       starter
@@ -60,8 +58,7 @@ const searchStackExchange = async () => {
       <a href="https://vuejs.org/guide/scaling-up/tooling.html#ide-support" target="_blank">Vue Docs Scaling up
         Guide</a>.
     </p>
-    <p class="read-the-docs">Click on the Vite and Vue logos to learn more</p>
-  </div>
+    <p class="read-the-docs">Click on the Vite and Vue logos to learn more</p> -->
 </template>
 
 <style scoped>
