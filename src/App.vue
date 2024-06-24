@@ -1,6 +1,19 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import { createMemoryHistory, createRouter } from 'vue-router'
 import ListQuestions from './components/ListQuestions.vue'
+import ViewQuestion from './components/ViewQuestion.vue'
+
+const routes = [
+  { path: '/', component: ListQuestions },
+  { path: '/ViewQuestion', component: ViewQuestion },
+]
+
+const router = createRouter({
+  history: createMemoryHistory(),
+  routes,
+})
+
+
 </script>
 
 <template>
@@ -12,10 +25,21 @@ import ListQuestions from './components/ListQuestions.vue'
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
     </a>
   </div> -->
-  <HelloWorld msg="things and stuff" />
-  <ListQuestions/>
 
-  
+  <template>
+  <h1>Hello App!</h1>
+  <p>
+    <strong>Current route path:</strong> {{ $route }}
+  </p>
+  <nav>hi
+    <RouterLink to="/">list of questions</RouterLink>
+    <RouterLink to="/ViewQuestion">one question</RouterLink>
+  </nav>
+  <main>
+    <RouterView />
+  </main>
+</template>
+  <ListQuestions/>
 </template>
 
 <style scoped>

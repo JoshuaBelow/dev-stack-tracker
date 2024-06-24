@@ -4,6 +4,7 @@ import { ref } from 'vue';
 const API_BASE_URL = 'https://api.stackexchange.com/2.3';
 
 const searchResults = ref([]);
+const questionAnswers = ref([]);
 
 export async function searchStackExchange() {
   try {
@@ -27,4 +28,24 @@ export async function searchStackExchange() {
   }
 }
 
-export { searchResults };
+export async function fetchQuestionAnswers(questionId) {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/questions/${questionId}/answers`, {
+      params: {
+        order: 'desc',
+        sort: 'activity',
+        site: 'stackoverflow',
+        filter: 'withbody', // Get the full answer body
+      },
+    });
+    questionAnswers.value = response.data.items;
+    console.info(questionAnswers);
+
+  } catch (error) {
+    console.error('Error fetching answers from Stack Exchange API:', error);
+    throw error;
+  }
+}
+
+
+export { searchResults, questionAnswers };
