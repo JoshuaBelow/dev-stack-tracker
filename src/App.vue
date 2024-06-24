@@ -17,7 +17,6 @@ const router = createRouter({
 
 <template>
   <div>
-    <h1>Hello App!</h1>
     <nav>
       <RouterLink to="/">List of Questions</RouterLink>
     </nav>
