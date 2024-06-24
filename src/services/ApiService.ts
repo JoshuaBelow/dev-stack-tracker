@@ -14,11 +14,13 @@ export async function searchStackExchange() {
         order: 'desc',
         sort: 'creation',
         accepted: true,
-        answers: 1,
+        answers: 2, //this is to say more than 1 as "answers" is more like "moreThanXAnswers"
         site: 'stackoverflow',
       },
     });
     searchResults.value = response.data.items;
+    console.info(searchResults);
+
   } catch (error) {
     console.error('Error fetching data from Stack Exchange API:', error);
     throw error;
