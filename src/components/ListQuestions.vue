@@ -6,17 +6,21 @@ const results = ref([]);
 const searchExecuted = ref(false);
 
 searchResults.value = results;
-</script>
 
+async function executeSearch() {
+  searchExecuted.value = true;
+  await searchStackExchange();
+}
+</script>
 
 <template>
   <div>
-    <button @click="searchStackExchange">Search Stack Exchange</button>
+    <button @click="executeSearch">Search Stack Exchange</button>
     <ul v-if="searchResults.length > 0">
       <li v-for="result in searchResults" :key="result.question_id">
-        <router-link :to="{ name: 'QuestionAnswers', params: { questionId: result.question_id, questionTitle: result.title } }">
+        <RouterLink :to="{ path: `/question/${result.question_id}`, query: { title: result.title } }">
           {{ result.title }}
-        </router-link>
+        </RouterLink>
       </li>
     </ul>
     <p v-else-if="searchExecuted">No results found.</p>
