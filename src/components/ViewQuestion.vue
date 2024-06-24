@@ -20,7 +20,6 @@ function goBack() {
 </script>
 
 <template>
-  <div>
     <button @click="goBack">Back to search results</button>
     <h1>Answers for: {{ questionTitle }}</h1>
     <ul v-if="answers.length > 0">
@@ -29,7 +28,6 @@ function goBack() {
       </li>
     </ul>
     <p v-else>No answers found.</p>
-  </div>
 </template>
 
 <style>

@@ -14,7 +14,8 @@ async function executeSearch() {
 </script>
 
 <template>
-  <div>
+  <div>testing things</div>
+
     <button @click="executeSearch">Search Stack Exchange</button>
     <ul v-if="searchResults.length > 0">
       <li v-for="result in searchResults" :key="result.question_id">
@@ -25,7 +26,6 @@ async function executeSearch() {
     </ul>
     <p v-else-if="searchExecuted">No results found.</p>
     <p v-else>Click the button to search Stack Exchange.</p>
-  </div>
 </template>
 
 <style>
